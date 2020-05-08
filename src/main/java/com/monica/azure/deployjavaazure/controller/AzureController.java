@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AzureController {
     @RequestMapping(value="/gethost", method=RequestMethod.GET)
 	public String requestMethodName(final HttpServletRequest request) {
-        final String clientAddress=request.getLocalName();
+        final String clientAddress=request.getServerName();
         try{
             InetAddress serverAddress;
             serverAddress= InetAddress.getLocalHost();
