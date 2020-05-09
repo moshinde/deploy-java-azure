@@ -1,4 +1,4 @@
-#!/bin/sh 
+#!/bin/bash 
 SERVICE_NAME=deploy-java-azure 
 PATH_TO_JAR=./deploy-java-azure.jar 
 PID_PATH_NAME=/tmp/deploy-java-azure-pid 
