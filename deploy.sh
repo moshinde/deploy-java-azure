@@ -1,7 +1,7 @@
 #!/bin/sh
-SERVICE_NAME=deploy-java-azue
-PATH_TO_JAR=./deploy-java-azue.jar
-PID_PATH_NAME=/tmp/deploy-java-azue-pid
+SERVICE_NAME=deploy-java-azure
+PATH_TO_JAR=./deploy-java-azure.jar
+PID_PATH_NAME=/tmp/deploy-java-azure-pid
 if [ -f "$PATH_TO_JAR" ]; then
 	case $1 in
 	stat)
