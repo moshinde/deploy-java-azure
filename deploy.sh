@@ -1,6 +1,6 @@
 #!/bin/sh
 SERVICE_NAME=deploy-java-azure
-PATH_TO_JAR=./deploy-java-azure.jar
+PATH_TO_JAR=/opt/apache/deploy-java-azure.jar
 PID_PATH_NAME=/tmp/deploy-java-azure-pid
 case $1 in
 start)
