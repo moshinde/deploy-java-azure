@@ -15,7 +15,10 @@ public class AzureController {
        
     @RequestMapping(value="/gethost", method=RequestMethod.GET)
 	public Deployment requestMethodName(final HttpServletRequest request) {
-        final String clientAddress=request.getServerName();
+        String clientAddress=request.getHeader("X-FORWARDED-FOR");
+        if (clientAddress == null || "".equals(clientAddress)) {
+            clientAddress = request.getRemoteHost();
+        }
         Deployment deployment = new Deployment();
         try{
             InetAddress serverAddress;
