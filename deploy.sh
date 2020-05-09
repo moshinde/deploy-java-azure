@@ -3,16 +3,17 @@ SERVICE_NAME=deploy-java-azure
 PATH_TO_JAR=./deploy-java-azure.jar
 PID_PATH_NAME=/tmp/deploy-java-azure-pid
 if [ -f "$PATH_TO_JAR" ]; then
+    echo "$PATH_TO_JAR exist .."
 	case $1 in
-	stat)
-		   echo "Stating $SERVICE_NAME ..."
+	start)
+		   echo "Starting $SERVICE_NAME ..."
 	  if [ ! -f $PID_PATH_NAME ]; then
-		   nohup java -ja $PATH_TO_JAR /tmp 2>> /dev/null >>/dev/null &
+		   nohup java -jar $PATH_TO_JAR /tmp 2>> /dev/null >>/dev/null &
 					   echo $! > $PID_PATH_NAME;
 			PID=$(cat $PID_PATH_NAME);
-		   echo "$SERVICE_NAME stated with PID $PID ..."
+		   echo "$SERVICE_NAME started with PID $PID ..."
 	  else
-		   echo "$SERVICE_NAME is aleady running ..."
+		   echo "$SERVICE_NAME is already running ..."
 	  fi
 	;;
 	stop)
@@ -21,27 +22,27 @@ if [ -f "$PATH_TO_JAR" ]; then
 			 echo "$SERVICE_NAME stoping ..."
 			 kill $PID;
 			 echo "$SERVICE_NAME stopped ..."
-			 m $PID_PATH_NAME
+			 rm $PID_PATH_NAME
 	  else
-			 echo "$SERVICE_NAME is not unning ..."
+			 echo "$SERVICE_NAME is not running ..."
 	  fi
 	;;  
-	estart)
+	restart)
 	  if [ -f $PID_PATH_NAME ]; then
 		  PID=$(cat $PID_PATH_NAME);   
 		  echo "$SERVICE_NAME stopping ...";
 		  kill $PID;
 		  echo "$SERVICE_NAME stopped ...";
-		  m $PID_PATH_NAME
-		  echo "$SERVICE_NAME stating ..."
-		  nohup java -ja $PATH_TO_JAR /tmp 2>> /dev/null >> /dev/null &
+		  rm $PID_PATH_NAME
+		  echo "$SERVICE_NAME starting ..."
+		  nohup java -jar $PATH_TO_JAR /tmp 2>> /dev/null >> /dev/null &
 		  echo $! > $PID_PATH_NAME
-		  echo "$SERVICE_NAME stated ..."
+		  echo "$SERVICE_NAME started ..."
 	  else
-		  echo "$SERVICE_NAME is not unning ..."
+		  echo "$SERVICE_NAME is not running ..."
 		 fi;;
 	 esac
 else
-    echo "$PATH_TO_JAR doesnt exist. Deployment will be teminated"
+    echo "$PATH_TO_JAR doesnt exist. Deployment will be terminated"
     exit 2
 fi
