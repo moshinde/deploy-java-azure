@@ -9,8 +9,8 @@ start)
 	if [ -f "$PATH_TO_JAR" ]; then
 		echo "$PATH_TO_JAR exist .."
 		if [ ! -f $PID_PATH_NAME ]; then
-			nohup java -Dserver.port=8080 -jar $PATH_TO_JAR /tmp 2>> $PATH_TO_LOG >> $PATH_TO_LOG &
-					   echo $! > $PID_PATH_NAME;
+			nohup java -Dserver.port=8080 -jar $PATH_TO_JAR /tmp 2>> $PATH_TO_LOG >> $PATH_TO_LOG & echo $! > $PID_PATH_NAME;
+			echo "exit code for java run $?"
 			PID=$(cat $PID_PATH_NAME);
 			echo "$SERVICE_NAME started with PID $PID ..."
 		else
