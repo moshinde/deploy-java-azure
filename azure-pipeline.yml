@@ -4,7 +4,7 @@ pool:
 
 trigger:
   branches:
-    include: 'master'
+    include: ['master']
 
 steps:
 - task: Maven@3
