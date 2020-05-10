@@ -1,0 +1,33 @@
+pool:
+  name: Azure Pipelines
+  demands: maven
+
+steps:
+- task: Maven@3
+  displayName: 'Run maven install'
+  inputs:
+    goals: 'clean install'
+    options: '-DpackageVersion="$(Build.BuildNumber)" -DskipTests'
+    publishJUnitResults: false
+
+- task: CopyFiles@2
+  displayName: 'Copy deploy file'
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)'
+    Contents: '*.sh'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: CopyFiles@2
+  displayName: 'Copy jar file'
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)/target'
+    Contents: '*.jar'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: PublishPipelineArtifact@1
+  displayName: 'Publish Pipeline Artifact'
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)'
+    artifact: 'get-Host-API'
+
+
