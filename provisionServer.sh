@@ -15,9 +15,9 @@ cat <<EOF > /etc/systemd/system/deploy-java-azure.service
  Restart=always
  RestartSec=1
  SuccessExitStatus=143 
- ExecStart =/usr/local/bin/deploy.sh start
- ExecStop =/usr/local/bin/deploy.sh stop
- ExecReload =/usr/local/bin/deploy.sh restart
+ ExecStart =/bin/bash /usr/local/bin/deploy.sh start
+ ExecStop =/bin/bash /usr/local/bin/deploy.sh stop
+ ExecReload =/bin/bash /usr/local/bin/deploy.sh restart
 [Install]
  WantedBy=multi-user.target
 EOF
