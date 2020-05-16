@@ -1,6 +1,6 @@
 # deploy-java-azure
 
-This application is created to test Azure pipeline with Deployment group job for java applications. It simply returns following values on calling http://localhost:8080/gethost :
+This application is created to test Azure pipeline with Deployment group job for java applications. Service simply returns following values on calling http://localhost:8080/gethost :
 1. Server address on which this app is deployed
 2. The version of service deployed
 3. Client address
