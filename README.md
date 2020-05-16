@@ -16,6 +16,8 @@ Paste it in the provisionServer.sh
 
 Use provisionServer.sh file to provision servers. This file can be configured in the template for EC2 Auto-scaling group. This will provision servers with all the needed applications to run this service and also will register the server with Azure deployment group as an agent.
 
+Update arguement provided in the provisionServer.sh file for "--token *****"
+
 ## Azure Build Pipeline
 
 Configure azure-pipeline.yml to setup the build pipeline in Azure. This includes following tasks:
