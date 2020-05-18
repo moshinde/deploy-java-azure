@@ -33,5 +33,3 @@ steps:
   inputs:
     targetPath: '$(Build.ArtifactStagingDirectory)'
     artifact: 'get-Host-API'
-
-
