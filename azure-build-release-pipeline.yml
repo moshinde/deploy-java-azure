@@ -44,19 +44,3 @@ stages:
           inputs:
             targetPath: '$(Build.ArtifactStagingDirectory)'
             artifact: 'get-Host-API'
-
-  - stage: DeployDEV
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
-    dependsOn: Build
-    displayName: Deployment to DEV
-    jobs:
-    - deployment: VMDeploy
-      displayName: DEV
-      environment:
-        name:  DEV-deploy-java-azure
-        resourceType: VirtualMachine
-      strategy:
-        runOnce:
-          deploy:
-            steps:
-            - script: echo my first deployment
